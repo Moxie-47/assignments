@@ -27,7 +27,7 @@ function findLastIndexOf(str, target) {
 findLastIndexOf("Hello World World", "World");
 
 // slice
-function getSlice(str, start, end) {
+function getSlice(str, start, end) { // this means [start , end) or in other words [start  , length]
   console.log("Original String:", str);
   console.log("After slice:", str.slice(start, end));
 }
@@ -47,14 +47,14 @@ function replaceString(str, target, replacement) {
 }
 replaceString("Hello World", "World", "JavaScript");
 
-// split
+// split : it splits ur string based on the delimiter or seperator
 function splitString(str, separator) {
   console.log("Original String:", str);
   console.log("After split:", str.split(separator));
 }
 splitString("Hello World", " ");
 
-// trim
+// trim : trims down the extra spaces from starting and from the end
 function trimString(str) {
   console.log("Original String:", str);
   console.log("After trim:", str.trim());

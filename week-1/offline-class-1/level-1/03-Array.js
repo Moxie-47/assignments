@@ -47,10 +47,20 @@ function concatExample(arr1, arr2) {
 
   let arr3 = arr1.concat(arr2);
   console.log("After concat:", arr3);
+  console.log("After concat:", arr1);
 }
 concatExample([1, 2, 3], [4, 5, 6]);
 
-// forEach()
+// **
+
+// this is simmilar to this : '
+// function logCall(str) {
+//   console.log(str) ;
+// }
+// initialArray.forEach(logCall ) ; // it's(foreach's) syntax is quite different as it expect a function as an arguement . That we call callback. ie. we don't call the func1 directly infact we call another function , func2 in which we pass the func1 as an arguement
+
+
+// forEach() : one of the way to iterate over an array
 function forEachExample(arr) {
   console.log("Original Array:", arr);
 

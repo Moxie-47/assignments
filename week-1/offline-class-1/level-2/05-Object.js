@@ -11,13 +11,11 @@ function objectMethods(obj) {
   let entries = Object.entries(obj);
   console.log("After Object.entries():", entries);
 
-  let hasProp = obj.hasOwnProperty("property");
-  console.log("After hasOwnProperty():", hasProp);
+  let hasProp = obj.hasOwnProperty("property"); // means search and tell if the object contains any attribute/property named "property"
+  console.log("After hasOwnProperty():", hasProp); // will print false as sampleObject don't contain any property named property
 
   let newObj = Object.assign({}, obj, { newProperty: "newValue" });
   console.log("After Object.assign():", newObj);
-
-
 }
 
 // Example Usage for Object Methods

@@ -10,6 +10,8 @@ function dateMethods() {
   console.log("Minutes:", currentDate.getMinutes());
   console.log("Seconds:", currentDate.getSeconds());
 
+
+  // biggest usecase of this date class is to see how much time it takes to run a function
   // Setting components of the date
   currentDate.setFullYear(2022);
   console.log("After setFullYear:", currentDate);
@@ -24,5 +26,10 @@ function dateMethods() {
   console.log("New Date:", newDate);
 }
 
+
+function currentTimePrint() {
+  console.log(new Date().getTime()) ;
+}
+setInterval(currentTimePrint , 5000);
 // Example Usage for Date Methods
 dateMethods();
