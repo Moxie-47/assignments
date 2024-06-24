@@ -56,11 +56,12 @@ return true ;
 }
 
 
-let ans=  isAnagram("helo" , "pelh") ;
-if(ans){
-  console.log("yes, the strings provided are anagram " , ans) ;
-  }
-  else
-console.log("No, the strings provided are not anagram " , ans) ;
+// let ans=  isAnagram("helo" , "pelh") ;
+// if(ans){
+//   // console.log("yes, the strings provided are anagram " , ans) ;
+//   console.log( ans) ;
+//   }
+//   else
+// console.log(ans) ;
 
-// module.exports = isAnagram;
+module.exports = isAnagram;

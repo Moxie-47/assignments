@@ -1,4 +1,5 @@
 const isAnagram = require('../easy/anagram');
+// const isAnagram = require('../anagram1');
 
 describe('isAnagram', () => {
 	test('returns true for anagrams', () => {
