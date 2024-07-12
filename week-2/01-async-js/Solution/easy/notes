@@ -1,0 +1,73 @@
+## Code1 
+
+<!-- 
+const fs = require('fs')
+
+function PkRead() {
+    fs.readFile("abc.txt", "utf-8", (err, data) => {
+        if (err) {
+            console.log("Error is here : ", err)
+            return -1; 
+        }
+        else {
+
+            // console.log(data)
+            return data
+            // cd(data)
+        }
+    })
+}
+
+// PkRead((data)=>{
+//     console.log(data) ;
+// })
+
+function prit(data) {
+    console.log(data);
+}
+
+const val = PkRead()
+prit(val)
+
+ -->
+The issue with your code is that fs.readFile is an asynchronous function, and it doesn't immediately return the data. Instead, it uses a callback to provide the data once the read operation is complete. This means that PkRead() will return undefined before the file reading is completed.
+
+To handle this properly, you should use a callback or promises to work with the asynchronous nature of fs.readFile. Here are two solutions: one using callbacks and the other using promises (with async/await).
+
+
+
+
+<!-- const fs = require('fs')
+
+async function PkRead() {
+    fs.readFile("abc.txt", "utf-8", (err, data) => {
+        if (err) {
+            console.log("Error is here : ", err)
+            return -1; 
+        }
+        else {
+
+            // console.log(data)
+            return data
+            // cd(data)
+        }
+    })
+}
+
+// PkRead((data)=>{
+//     console.log(data) ;
+// })
+
+async function prit(data) {
+    console.log(data);
+}
+
+const val = await PkRead()
+prit(val) -->
+
+
+## Why Your Original Code Didn’t Work:
+-> The fs.readFile in your PkRead function was not returning a promise, so await PkRead() didn't wait for the file read to complete.
+-> async/await requires functions to return promises, but fs.readFile was using a callback, so the return inside the callback didn't affect the PkRead function's return value.
+-> By using the promise-based version of fs.readFile, the code can properly use async/await for asynchronous operations.
+

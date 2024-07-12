@@ -1,6 +1,15 @@
 const jwt = require('jsonwebtoken');
 const jwtPassword = 'secret';
+const zod = require('zod')
 
+function ValidateUser(obj) {
+    const schema = zod.object({
+        username: zod.string().email(),
+        password: zod.string().min(6)
+    })
+    const response = schema.safeParse(obj)
+    return response
+}
 
 /**
  * Generates a JWT for a given username and password.
@@ -15,6 +24,13 @@ const jwtPassword = 'secret';
  */
 function signJwt(username, password) {
     // Your code here
+    const response = ValidateUser({ username: username, password: password });
+    if (response.success) {
+        const signature = jwt.sign({username , password}, jwtPassword);
+        return signature;
+    }
+    else
+        return null
 }
 
 /**
@@ -25,8 +41,48 @@ function signJwt(username, password) {
  *                    Returns false if the token is invalid, expired, or not verified
  *                    using the secret key.
  */
+
+/*
+// My doubt  : 
+async function verifyToken(token, jwtPassword) {
+    try {
+        await jwt.verify(token, jwtPassword);
+        return true; // Token is valid
+    } catch (err) {
+        return false; // Token is not valid
+    }
+}
+
+// Example usage
+async function someFunction() {
+    const isValid = await verifyToken(token, jwtPassword);
+    console.log(isValid); // Use the result as needed
+}
+
+*/
+
 function verifyJwt(token) {
     // Your code here
+
+    // -->This won't work as this code uses a callback function with jwt.verify, which handles the verification asynchronously.
+    // jwt.verify(token, jwtPassword, async function (err) {
+    //     if (err) {
+    //         // console.log("Token not valid")
+    //         return false
+    //     }
+    //     else {
+    //         return true
+    //     }
+    // })
+
+    let ans = true ;
+    try{
+        jwt.verify(token , jwtPassword) ;
+    }
+    catch(err){
+        ans = false
+    }
+    return ans ;
 }
 
 /**
@@ -38,12 +94,16 @@ function verifyJwt(token) {
  */
 function decodeJwt(token) {
     // Your code here
+    const decoded = jwt.decode(token) ;
+    if(decoded)return true 
+    else
+    return false
 }
 
 
 module.exports = {
-  signJwt,
-  verifyJwt,
-  decodeJwt,
-  jwtPassword,
+    signJwt,
+    verifyJwt,
+    decodeJwt,
+    jwtPassword,
 };
