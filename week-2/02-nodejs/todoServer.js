@@ -14,7 +14,7 @@
   2.GET /todos/:id - Retrieve a specific todo item by ID
     Description: Returns a specific todo item identified by its ID.
     Response: 200 OK with the todo item in JSON format if found, or 404 Not Found if not found.
-    Example: GET http://localhost:3000/todos/123
+    Example: GET http://localhost:3000/todos/123 
     
   3. POST /todos - Create a new todo item
     Description: Creates a new todo item.

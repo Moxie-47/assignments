@@ -1,6 +1,7 @@
 /**
   You need to create an express HTTP server in Node.js which will handle the logic of a file server.
-  - Use built in Node.js `fs` module
+  - Use built in Node.js `fs` module.
+  
   The expected API endpoints are defined below,
   1. GET /files - Returns a list of files present in `./files/` directory
     Response: 200 OK with an array of file names in JSON format.
@@ -12,10 +13,50 @@
     - For any other route not defined in the server return 404
     Testing the server - run `npm run test-fileServer` command in terminal
  */
-const express = require('express');
-const fs = require('fs');
-const path = require('path');
-const app = express();
 
-
-module.exports = app;
+    const express = require('express'); 
+    const fs = require('fs');
+    const path = require('path');
+    const app = express();
+    
+    // Endpoint to list all files in the ./files/ directory
+    app.get('/files', (req, res) => {
+        const dirPath = path.join(__dirname, 'files');
+        
+        fs.readdir(dirPath, (err, files) => {
+            if (err) {
+                return res.status(500).json({ error: 'Failed to read directory' });
+            }
+            res.status(200).json(files);
+        });
+    });
+    
+    // Endpoint to get the content of a specific file
+    app.get('/file/:filename', (req, res) => {
+        const filePath = path.join(__dirname, 'files', req.params.filename);
+        console.log("dir path : ",__dirname)
+        console.log("File path : ",filePath)
+        
+        fs.readFile(filePath, 'utf-8', (err, data) => {
+            if (err) {
+                if (err.code === 'ENOENT') {
+                    return res.status(404).send('File not found');
+                }
+                return res.status(500).json({ error: 'Failed to read file' });
+            }
+            res.status(200).send(data);
+        });
+    });
+    
+    // Handle undefined routes with 404
+    app.use((req, res) => {
+        res.status(404).send('Not Found');
+    });
+    
+    // Start the server
+    app.listen(3000, () => {
+        console.log('Server is running on port 3000');
+    });
+    
+    module.exports = app;
+    

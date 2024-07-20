@@ -1,14 +1,14 @@
 // counter using setTimeout
-// function counter() {
-//     for (let i = 1; true; i++) {
-//         setTimeout(() => {
-//             console.log(i) ;
+function counter(n) {
+    for (let i = 1; i<=n; i++) {
+        setTimeout(() => {
+            console.log(i) ;
 
-//         }, 1000*i);
+        }, 1000*i);
 
-//     }
-// }
-
+    }
+}
+counter(n)
 
 // counter : using setInterval
 // function counter(n){

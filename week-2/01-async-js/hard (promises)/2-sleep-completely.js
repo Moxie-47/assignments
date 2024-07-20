@@ -5,6 +5,26 @@
  */
 
 function sleep(milliseconds) {
+    return new Promise((resolve)=>{
+        const start = Date.now()
+        while (Date.now()-start < milliseconds) {
+            
+        }
+        resolve()
+    })
 }
+
+// --> Wrong 
+// async function Helper(milliseconds){
+//     setTimeout(()=>{
+//         return new Promise() ;
+//     },milliseconds)
+// }
+
+// function sleep(milliseconds) {
+//     Helper(milliseconds).then((response)=>{
+//         return response
+//     })
+// }
 
 module.exports = sleep;
